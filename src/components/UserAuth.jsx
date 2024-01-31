@@ -1,12 +1,4 @@
-import React from "react";
-
-const UserAuth = ({
-  authStatus,
-  handleLogin,
-  handleLogout,
-  handleAuthChange,
-  credentials,
-}) => {
+const UserAuth = ({ authStatus, handleLogin, handleLogout, credentials }) => {
   const renderUser = (authStatus, credentials) => {
     if (authStatus) {
       return (
@@ -15,10 +7,7 @@ const UserAuth = ({
           <h2>Your email is, {credentials.email}</h2>
           <button
             className="p-3 w-32 bg-orange-500 rounded-md mt-4"
-            onClick={() => {
-              handleLogout();
-              handleAuthChange();
-            }}
+            onClick={handleLogout}
           >
             Logout
           </button>
@@ -29,10 +18,7 @@ const UserAuth = ({
         <div>
           <button
             className="p-3 w-32 bg-orange-500 rounded-md mt-4"
-            onClick={() => {
-              handleLogin();
-              handleAuthChange();
-            }}
+            onClick={handleLogin}
           >
             Login
           </button>

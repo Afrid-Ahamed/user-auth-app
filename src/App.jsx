@@ -11,16 +11,22 @@ function App() {
     email: "",
   });
 
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+  });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
+    setInputs((prevInputs) => ({
+      ...prevInputs,
       [name]: value,
     }));
   };
 
-  const handleAuthChange = () => {
-    setCredentials({
+  const handleLogin = () => {
+    setCredentials(inputs);
+    setInputs({
       username: "",
       email: "",
     });
@@ -31,7 +37,7 @@ function App() {
       <input
         type="text"
         name="username"
-        value={credentials.username}
+        value={inputs.username}
         placeholder="Enter your username ..."
         onChange={handleInputChange}
         className="w-60 h-10 mb-5 rounded-sm p-3 text-black"
@@ -39,15 +45,12 @@ function App() {
       <input
         type="text"
         name="email"
-        value={credentials.email}
+        value={inputs.email}
         placeholder="Enter your email ..."
         onChange={handleInputChange}
         className="w-60 h-10 mb-5 rounded-sm p-3 text-black"
       />
-      <UserWithAuth
-        credentials={credentials}
-        handleAuthChange={handleAuthChange}
-      />
+      <UserWithAuth credentials={credentials} handleLogin={handleLogin} />
     </div>
   );
 }
